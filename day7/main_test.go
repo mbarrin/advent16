@@ -7,10 +7,10 @@ func TestTotalValid(t *testing.T) {
 
 	count := 2
 
-	output := totalValid(input)
+	tls, _ := totalValid(input)
 
-	if output != count {
-		t.Logf("expected %d got %d", count, output)
+	if tls != count {
+		t.Logf("expected %d got %d", count, tls)
 		t.Fail()
 	}
 }
