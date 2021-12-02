@@ -55,6 +55,19 @@ func turnOn(grid [][]bool, x, y int) [][]bool {
 	return grid
 }
 
+func code(grid [][]bool) {
+	lookup := map[bool]string{true: "*", false: " "}
+
+	for y := 0; y < len(grid); y += 1 {
+		for x := 0; x < len(grid[y]); x += 1 {
+			fmt.Print(lookup[grid[y][x]])
+			if x == 49 {
+				fmt.Printf("\n")
+			}
+		}
+	}
+}
+
 func lit(grid [][]bool) int {
 	count := 0
 
@@ -96,4 +109,5 @@ func main() {
 	}
 
 	fmt.Printf("part 1: %d\n", lit(grid))
+	code(grid)
 }
