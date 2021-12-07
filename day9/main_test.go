@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -15,10 +16,9 @@ func TestDecrypt(t *testing.T) {
 	}
 
 	for k, v := range input {
-		decryptedLength := decrypt(k)
+		decryptedLength := decrypt(strings.Split(k, ""))
 		if decryptedLength != v {
-			t.Fail()
-			t.Logf("expected %d, got %d", v, decryptedLength)
+			t.Fatalf("expected %d, got %d", v, decryptedLength)
 		}
 	}
 }
@@ -26,13 +26,13 @@ func TestDecrypt(t *testing.T) {
 func TestDecryptV2(t *testing.T) {
 	input := map[string]int{
 		//"(3x3)XYZ":                           9,
-		//"X(8x2)(3x3)ABCY":                    20,
-		//"(27x12)(20x12)(13x14)(7x10)(1x12)A": 241920,
-		"(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN": 445,
+		"X(8x2)(3x3)ABCY": 20,
+		//"(27x12)(20x12)(13x14)(7x10)(1x12)A":                       241920,
+		//"(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN": 445,
 	}
 
 	for k, v := range input {
-		decryptedLength := decryptV2(k)
+		decryptedLength := decryptV2(strings.Split(k, ""))
 		if decryptedLength != v {
 			t.Fail()
 			t.Logf("expected %d, got %d", v, decryptedLength)
